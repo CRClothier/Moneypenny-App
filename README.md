@@ -1,24 +1,51 @@
-# README
+![](https://img.shields.io/badge/Microverse-blueviolet)
+# Budget App
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+A mobile app following a design on behance allowing transactions to be recorded and organised by category.
 
-Things you may want to cover:
 
-* Ruby version
+## Live Demo
 
-* System dependencies
+For a live demo
+- Netlify [click here]().
 
-* Configuration
+## Built With
 
-* Database creation
+- Ruby on Rails
+- PostgreSQL
+- Devise Gem
 
-* Database initialization
 
-* How to run the test suite
+## Run project
 
-* Services (job queues, cache servers, search engines, etc.)
+```bash
+ run 'bundle install'
+ run 'npm install' or 'yarn install'
+ run 'rails db:create'
+ run 'rails db:migrate'
+ run 'rails db:seed'
+ run 'rails s' to start the server locally
+```
 
-* Deployment instructions
 
-* ...
+## Author
+
+👤 **Chris Clothier**
+- LinkedIn: [@chris](https://www.linkedin.com/in/crclothier/)
+- Github: [@chris](https://github.com/CRClothier) 
+
+## 🤝 Contributing
+  
+Contributions, issues, and feature requests are welcome!
+
+## Show your support
+
+Give a ⭐️ if you like this project!
+
+## Acknowledgments
+
+- Original design idea by Gregoire Vella on Behance.
+
+## 📝 License
+
+This project is [MIT](./LICENSE) licensed.

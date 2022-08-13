@@ -7,10 +7,6 @@ RSpec.describe 'Splash index page', type: :system do
       visit root_path
     end
 
-    it 'Shows the App title' do
-      expect(page).to have_content('Accountability')
-    end
-
     it 'Shows the Login button' do
       expect(page).to have_content('LOG IN')
     end
