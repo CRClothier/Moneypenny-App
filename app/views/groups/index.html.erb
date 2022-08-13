@@ -1,14 +1,23 @@
-<p style="color: green"><%= notice %></p>
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Moneypenny App</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
 
-<h1>Groups</h1>
+    <%= stylesheet_link_tag "group", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+  </head>
 
-<div id="groups">
-  <% @groups.each do |group| %>
-    <%= render group %>
-    <p>
-      <%= link_to "Show this group", group %>
-    </p>
-  <% end %>
-</div>
-
-<%= link_to "New group", new_group_path %>
+  <body>
+    <% @groups.each do |group| %>
+        <%= render "partials/category_card", group: group %>
+    <% end %>
+    <div class="btn-container">
+    <%= link_to new_user_group_path(current_user), {:class => "links-btn"} do%>
+      <button class="button bottom-btn">New group</button>
+    <%end%>
+      </div>
+  </body>
+</html>

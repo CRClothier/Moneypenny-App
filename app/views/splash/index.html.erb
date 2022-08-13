@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Moneypenny App</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag "splash", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+  </head>
+
+  <body>
+  <div class="splash-title">
+    <%# <h1>Accountability</h1> %>
+    <%= image_tag "app-icon.png", class:"app_icon" %>
+  </div>
+  <div class="splash-container">
+    <%= link_to "LOG IN", new_user_session_path, class: 'login-btn' %>  
+    <%= link_to "SIGN UP", new_user_registration_path, class: 'signup-btn' %>
+  </div>
+  </body>
+</html>

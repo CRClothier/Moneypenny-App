@@ -1,0 +1,16 @@
+<div class="group-container">
+  <div class="group-data">
+    <span class="iconify" data-icon="<%= group.icon %>" data-width="60" data-height="60"></span>
+  </div>
+  <div class="group-sum">
+  <%= link_to user_group_expenses_path(current_user, group), {:class => "links"} do%>
+  <p><%= group.name %></p>
+  <%end%>
+  </div>
+  <div class="group-sum">
+  <%= link_to edit_user_group_path(current_user, group), {:class => "links-btn"} do%>
+      <button class="button-edit">Edit</button>
+    <%end%>
+  </div>
+  
+</div>
