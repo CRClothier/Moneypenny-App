@@ -67,4 +67,17 @@ Rails.application.configure do
 
   # Uncomment if you wish to allow Action Cable access from any origin.
   # config.action_cable.disable_request_forgery_protection = true
+  
+    # Config default mailer url
+    config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+  
+    # Config default mailer delivery method
+    config.action_mailer.delivery_method = :letter_opener
+    config.action_mailer.perform_deliveries = true
+  
+    #Config sass style
+    config.sass.inline_source_maps = true
+    config.sass.preferred_syntax = :sass
+    config.sass.line_comments = false
+    config.sass.cache = false
 end
