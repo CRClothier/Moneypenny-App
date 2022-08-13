@@ -1,0 +1,170 @@
+@import './variables.scss';
+
+body {
+  margin: 0;
+  background-color: $body;
+  color: $text;
+}
+
+.group-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 1rem;
+  border: 1px solid $text3;
+  padding: 0 0.5rem;
+}
+
+.group-container2 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid $text3;
+  padding: 0 0.5rem;
+  margin-top: -1rem;
+}
+
+.group-data {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .iconify {
+    margin-right: 1rem;
+  }
+
+  p {
+    margin-block-start: 0;
+    margin-block-end: 0;
+  }
+}
+
+.group-data2 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  p {
+    margin-block-start: 0;
+    margin-block-end: 0;
+  }
+}
+
+.group-dsum {
+  h3 {
+    margin-block-start: 0;
+    margin-block-end: 0;
+    color: black;
+    font-weight: bold;
+  }
+}
+
+.form-row {
+  margin: 0 0.5rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.form {
+  width: 100%;
+}
+
+.btn-container {
+  display: flex;
+  justify-content: center;
+  margin: 0;
+  margin-top: 4rem;
+  width: 100%;
+}
+
+.bottom-btn {
+  position: fixed;
+  bottom: 0;
+}
+
+.button-edit {
+  border: none;
+  background-color: $text2;
+  border-radius: 0;
+  color: rgb(255, 255, 255);
+  padding: 10px 10px;
+  font-size: 0.8rem;
+  width: 100%;
+  margin: 0;
+  cursor: pointer;
+  transition: all 0.4s ease-in-out;
+
+  &:hover {
+    background-color: $main;
+  }
+}
+
+.button-delete {
+  border: none;
+  background-color: rgb(238, 81, 81);
+  border-radius: 0;
+  color: rgb(255, 255, 255);
+  padding: 10px 10px;
+  font-size: 0.8rem;
+  width: 100%;
+  margin: 0;
+  cursor: pointer;
+  transition: all 0.4s ease-in-out;
+
+  &:hover {
+    background-color: $text2;
+  }
+}
+
+.button {
+  background-color: $second;
+  border-radius: 0;
+  color: rgb(255, 255, 255);
+  padding: 15px 10px;
+  font-size: 1rem;
+  width: 100%;
+  margin: 0;
+  cursor: pointer;
+  transition: all 0.4s ease-in-out;
+
+  &:hover {
+    background-color: $main;
+  }
+}
+
+select {
+  width: 100%;
+  height: 40px;
+  padding: 10px 15px;
+  color: white;
+  border-radius: 0;
+  background-color: $second;
+}
+
+.links-btn {
+  margin-top: 1rem;
+  color: $text2;
+  font-size: 1rem;
+  width: 100%;
+}
+
+.links-transaction {
+  color: $text2;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+}
+
+@media screen and (min-width: 769px) {
+  .form-row {
+    margin: 0 3rem;
+  }
+
+  .group-container {
+    margin: 1rem 3rem;
+  }
+
+  .group-container2 {
+    margin: 1rem 2rem;
+  }
+}
