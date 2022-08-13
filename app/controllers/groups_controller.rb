@@ -1,68 +1,52 @@
 class GroupsController < ApplicationController
-  before_action :set_group, only: %i[show edit update destroy]
-
-  # GET /groups or /groups.json
+  before_action :authenticate_user!
   def index
-    @groups = Group.all
+    @user = current_user
+    @groups = @user.groups
+    redirect_to user_groups_path(current_user) unless User.find_by(id: params[:user_id]) == current_user
   end
 
-  # GET /groups/1 or /groups/1.json
-  def show; end
-
-  # GET /groups/new
   def new
     @group = Group.new
   end
 
-  # GET /groups/1/edit
-  def edit; end
-
-  # POST /groups or /groups.json
   def create
-    @group = Group.new(group_params)
-
-    respond_to do |format|
-      if @group.save
-        format.html { redirect_to group_url(@group), notice: 'Group was successfully created.' }
-        format.json { render :show, status: :created, location: @group }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @group.errors, status: :unprocessable_entity }
-      end
+    @user = current_user
+    @group = @user.groups.new(group_params)
+    @group.author_id = @user.id
+    if @group.save
+      flash[:notice] = 'Group successfully created!'
+      redirect_to user_groups_path(current_user)
+    else
+      flash[:notice] = 'Group not created!'
+      render :new
     end
   end
 
-  # PATCH/PUT /groups/1 or /groups/1.json
-  def update
-    respond_to do |format|
-      if @group.update(group_params)
-        format.html { redirect_to group_url(@group), notice: 'Group was successfully updated.' }
-        format.json { render :show, status: :ok, location: @group }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @group.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # DELETE /groups/1 or /groups/1.json
   def destroy
+    @group = Group.find(params[:id])
     @group.destroy
+    flash[:notice] = 'Group successfully deleted!'
+    redirect_to user_groups_path(current_user)
+  end
 
-    respond_to do |format|
-      format.html { redirect_to groups_url, notice: 'Group was successfully destroyed.' }
-      format.json { head :no_content }
+  def edit
+    @group = Group.find(params[:id])
+  end
+
+  def update
+    @group = Group.find(params[:id])
+    if @group.update(group_params)
+      flash[:notice] = 'Group successfully updated!'
+      redirect_to user_groups_path(current_user)
+    else
+      flash[:notice] = 'Group not updated!'
+      render :edit
     end
   end
 
   private
 
-  # Use callbacks to share common setup or constraints between actions.
-  def set_group
-    @group = Group.find(params[:id])
-  end
-
-  # Only allow a list of trusted parameters through.
   def group_params
     params.require(:group).permit(:name, :icon)
   end

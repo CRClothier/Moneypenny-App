@@ -1,0 +1,11 @@
+<div class="group-container">
+  <div class="group-data2">
+  <%= link_to edit_user_group_expense_path(current_user, expense.group_id, expense), {:class => "links-transaction"} do%>
+    <p><%= expense.name %></p>
+  <%end%>
+    <%= button_to 'Delete', user_group_expense_path(current_user, group, expense), method: :delete, class: "button-delete"%>
+  </div>
+  <div class="group-sum">
+    <h3>$<%= expense.amount %></h3>
+  </div>
+</div>

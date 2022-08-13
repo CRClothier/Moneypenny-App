@@ -1,69 +1,77 @@
 class ExpensesController < ApplicationController
-  before_action :set_expense, only: %i[show edit update destroy]
+  before_action :authenticate_user!
 
-  # GET /expenses or /expenses.json
   def index
-    @expenses = Expense.all
+    @user = current_user
+    @group = @user.groups.find(params[:group_id])
+    @expenses = @user.expenses.where(group_id: @group.id)
+    @total_transactions = total_transactions
+    redirect_to user_group_expenses_path(current_user) unless User.find_by(id: params[:user_id]) == current_user
   end
 
-  # GET /expenses/1 or /expenses/1.json
-  def show; end
-
-  # GET /expenses/new
   def new
+    @user = current_user
     @expense = Expense.new
+    @group = @user.groups.find(params[:group_id])
   end
 
-  # GET /expenses/1/edit
-  def edit; end
-
-  # POST /expenses or /expenses.json
   def create
-    @expense = Expense.new(expense_params)
-
-    respond_to do |format|
-      if @expense.save
-        format.html { redirect_to expense_url(@expense), notice: 'Expense was successfully created.' }
-        format.json { render :show, status: :created, location: @expense }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @expense.errors, status: :unprocessable_entity }
-      end
+    @user = current_user
+    @group = @user.groups.find_by(id: expense_params[:group_id])
+    @expense = @user.expenses.create(name: expense_params[:name], amount: expense_params[:amount], author_id: @user.id,
+                                     group_id: expense_params[:group_id])
+    @group_expense = @expense.group_expenses.new(group_id: @group.id, expense_id: @expense.id)
+    if @expense.save && @group_expense.save
+      flash[:notice] = 'Transaction successfully created!'
+      redirect_to user_group_expenses_path(current_user, @group)
+    else
+      flash[:notice] = 'Transaction not created!'
+      render :new, status: :unprocessable_entity
     end
   end
 
-  # PATCH/PUT /expenses/1 or /expenses/1.json
-  def update
-    respond_to do |format|
-      if @expense.update(expense_params)
-        format.html { redirect_to expense_url(@expense), notice: 'Expense was successfully updated.' }
-        format.json { render :show, status: :ok, location: @expense }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @expense.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # DELETE /expenses/1 or /expenses/1.json
   def destroy
+    @user = current_user
+    @group = @user.groups.find(params[:group_id])
+    @expense = @user.expenses.find(params[:id])
     @expense.destroy
+    flash[:notice] = 'Transaction successfully deleted!'
+    redirect_to user_group_expenses_path(current_user, @group)
+  end
 
-    respond_to do |format|
-      format.html { redirect_to expenses_url, notice: 'Expense was successfully destroyed.' }
-      format.json { head :no_content }
+  def edit
+    @user = current_user
+    @group = @user.groups.find(params[:group_id])
+    @expense = @user.expenses.find(params[:id])
+  end
+
+  def update
+    @user = current_user
+    @group = @user.groups.find(params[:group_id])
+    @expense = @user.expenses.find(params[:id])
+    if @expense.update(expense_params)
+      flash[:notice] = 'Transaction successfully updated!'
+      redirect_to user_group_expenses_path(current_user, @group)
+    else
+      flash[:notice] = 'Transaction not updated!'
+      render :edit, status: :unprocessable_entity
     end
+  end
+
+  def total_transactions
+    @user = current_user
+    @group = @user.groups.find(params[:group_id])
+    @expenses = @user.expenses.where(group_id: @group.id)
+    @total_transactions = 0
+    @expenses.each do |expense|
+      @total_transactions += expense.amount
+    end
+    @total_transactions
   end
 
   private
 
-  # Use callbacks to share common setup or constraints between actions.
-  def set_expense
-    @expense = Expense.find(params[:id])
-  end
-
-  # Only allow a list of trusted parameters through.
   def expense_params
-    params.require(:expense).permit(:name, :amount)
+    params.require(:expense).permit(:name, :amount, :group_id)
   end
 end
