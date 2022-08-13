@@ -6,8 +6,7 @@ A mobile app following a design on behance allowing transactions to be recorded 
 
 ## Live Demo
 
-For a live demo
-- Netlify [click here]().
+For a live demo [click here](https://moneypenny-app.herokuapp.com).
 
 ## Built With
 
