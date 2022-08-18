@@ -10,7 +10,7 @@
    <%= form.number_field :amount, in: 0.00..100000000.00, step: 0.10, required: true, class: "text_field2" %>
   </div>
   <div class="form-row">
-    <% @groups = Group.all %>
+    <% @groups = @user.groups %>
      <%= form.select(:group_id, @groups.map { |group| [group.name, group.id] }, {:include_blank => "-- Select --"}, {:class => "custom-select"}) %>
   </div>
   <div class="submit_button_container">
