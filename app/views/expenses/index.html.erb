@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Moneypenny App</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag "group", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+  </head>
+
+  <body>
+  <div class="group-container2">
+  <div class="group-data">
+    <p>Total Amount: </p>
+  </div>
+  <div class="group-sum">
+    <h3>$<%= @total_transactions %></h3>
+  </div>
+</div>
+   <% @expenses.order(created_at: :desc).each do |expense| %>
+    <%= render "partials/expense_card", expense: expense, group: expense.group_id  %>
+    <% end %>
+   <div class="btn-container">
+    <%= link_to new_user_group_expense_path(current_user, @group), {:class => "links-btn"} do%>
+      <button class="button bottom-btn">New Transaction</button>
+    <%end%>
+      </div>
+  </body>
+</html>

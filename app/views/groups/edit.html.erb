@@ -1,0 +1,19 @@
+<div class="form_container">
+<%= form_for @group, url: user_group_path, method: :put, class: "form" do |form| %>
+  <div>
+  <br>
+  </div>
+  <div class="form-row">
+  <%= form.text_field :name, class: "text_field2" %>
+  </div>
+  <div class="form-row">
+    <%= form.select :icon, ['noto:house-with-garden', 'emojione-v1:bus', 'emojione:pot-of-food', 'healthicons:electricity', 'map:insurance-agency', 'noto:health-worker-medium-light-skin-tone', 'logos:netflix-icon', 'flat-color-icons:debt', 'icon-park-solid:other'], class: "custom-select" %>
+  </div>
+  <div class="submit_button_container">
+    <%= form.submit "Update", class: "button submit" %>
+  </div>
+  <div class="submit_button_container">
+    <%= button_to 'Delete', user_group_path(current_user, @group), method: :delete, class: "button-delete submit" %>
+  </div>
+<% end %>
+</div>

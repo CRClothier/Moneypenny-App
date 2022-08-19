@@ -1,0 +1,18 @@
+<div class="form_container">
+<%= form_with model: @group, url: user_groups_path, method: :post, class: "form" do |form| %>
+  <div>
+  <br>
+  </div>
+  <div class="form-row">
+  <%= form.text_field :name, placeholder: "Add Name", required: true, class: "text_field2" %>
+  </div>
+  <div class="form-row">
+    <%# <% @icon = Group.all %>
+    <%= form.select :icon, ['noto:house-with-garden', 'emojione-v1:bus', 'emojione:pot-of-food', 'healthicons:electricity', 'map:insurance-agency', 'noto:health-worker-medium-light-skin-tone', 'logos:netflix-icon', 'flat-color-icons:debt', 'icon-park-solid:other'], {:include_blank => "-- Select --"}, required: true, class: "custom-select" %>
+     <%# <%= form.select(:icon, @icon.map { |icon| [icon.icon] }, {:include_blank => "-- Select --", :class => "custom-select" %>
+  </div>
+  <div class="submit_button_container">
+    <%= form.submit "Add", class: "button submit" %>
+  </div>
+<% end %>
+</div>

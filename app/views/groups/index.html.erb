@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Moneypenny App</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag "group", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+  </head>
+
+  <body>
+    <% @groups.each do |group| %>
+        <%= render "partials/category_card", group: group %>
+    <% end %>
+    <div class="btn-container">
+    <%= link_to new_user_group_path(current_user), {:class => "links-btn"} do%>
+      <button class="button bottom-btn">New group</button>
+    <%end%>
+      </div>
+  </body>
+</html>

@@ -1,0 +1,144 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS (and SCSS, if configured) file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+@import url('https://fonts.googleapis.com/css?family=proxima-nova:thin,extra-light,light,bold,100,200,300,400,500,600,700,800');
+@import './variables.scss';
+
+body {
+  margin: 0;
+  background-color: $body;
+  font-family: $proxima-nova;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.form_container {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: -1rem;
+}
+
+.new_user {
+  width: 100%;
+  margin: 0;
+}
+
+.field {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.text_field2 {
+  padding: 0.5rem;
+  font-size: 1rem;
+  margin: 0;
+}
+
+.button {
+  background-color: $main;
+  border: none;
+  color: white;
+  border-radius: 0.3rem;
+  padding: 15px 15px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.submit {
+  width: fit-content;
+  margin: 0;
+  margin-top: 1rem;
+  padding: 0.5rem 3rem;
+}
+
+.submit_button_container {
+  display: flex;
+  justify-content: center;
+}
+
+.nav-bar,
+.nav-link {
+  color: #fff;
+  text-decoration: none;
+  text-align: center;
+  width: 100%;
+}
+
+.nav-link {
+  color: white;
+  width: max-content;
+}
+
+.nav-bar,
+a:hover { color: #cfcfcf; }
+
+.nav-bar {
+  display: flex;
+  background-color: $main;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  margin: 0;
+  padding: 0;
+}
+
+.list {
+  list-style: none;
+  display: flex;
+  padding: 0;
+  color: #fff;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 20px;
+  margin-block-end: 0;
+  margin-block-start: 0;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.list .item {
+  padding: 15px 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.links {
+  margin-top: 1.1rem;
+  color: $text2;
+  font-size: 1.1rem;
+}
+
+.nav-btn {
+  background: none;
+  border: none;
+  font-size: 1rem;
+  color: #fff;
+}
+
+@media screen and (min-width: 769px) {
+  .field {
+    margin: 0 2rem;
+  }
+}
